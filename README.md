@@ -1,28 +1,94 @@
-# finstagram
+# Deployment
+
+1. In the root of your repository, create the two following files:
 
 
-Welcome to the Lighthouse labs web fundamentals project! 
+.gitpod.Dockerfile  
+.gitpod.yml  
 
-We suggest our students use [GitPod](https://www.gitpod.io/) to work on this project in a cloud-based editor. This way they do not have to set up their machines with Ruby, Sinatra, and the various other web libraries that we will be covering with this project.
+Fill out these files based on the contents of the files of the same name in this repo
 
-## Environment Setup Instructions
+2. Update your Gemfile to match the Gemfile in this repo
 
-1. Sign up for GitPod
-2. Fork this repo using the FORK button in the top right [on Github](https://github.com/lighthouse-labs/finstagram)
-3. Open a new tab in your browser (preferably Google Chrome) and visit GitPod with the GitHub URL of your new code project: <https://www.gitpod.io/#https://github.com/YOURUSERNAMEHERE/finstagram> (<mark>Replace YOURUSERNAME with your actual GitHub username</mark>)
+3. Update your config/database.rb file to match the database.rb file in this repo
 
-## GitPod Setup Instructions
+4. Run bundle install in the terminal
 
-### Project Setup (in GitPod)
+5. Commit the changes, and push to the master branch of the repository
 
-1. In the Terminal pane/tab, run `gem install bundler`. It should say _"successfully installed bundler-2.0.2"_ (or a greater version number)
-2. In that same terminal tab, run `bundle install`. It will output many different lines, each representing a library (piece of code) that our project depends on. Near the end, you should expect to see green text saying _"Bundle complete!"_
+```
+git add .
+git commit -m "changes for deployment"
+git push origin master
+```
 
-### Starting The Project (in GitPod)
+6. Access the workspace again to force the dockerfile changes and install heroku
 
-1. In a terminal pane/tab, run `bin/serve` to start the server. It should mention _"Listening on port 3000"_ among other things
-2. In the top menu, Click _View_, then _Open Ports_. You should see port 3000 with a blue light next to it (to indicate that it is running our project on that port)
-3. _Optional:_ If it shows the button _Expose_ for that port, click that button
-4. You'll see _Open Preview_ and _Open Browser_, either of which will allow you to open your project in a new window or tab or preview pane. Go ahead and click on your preference (or try both at first to see which one you prefer).
+URL should match the following pattern:  
+https://gitpod.io/#https:github.com/[my_github_username_here]/finstagram
 
-You're now set up and ready to work on this project!
+7. check that heroku has been properly installed with the command in your terminal:
+
+```
+heroku --version
+```
+
+8. create a heroku account on heroku.com
+
+9. in the terminal of gitpod, run the following command and log in to heroku with your credentials
+
+```
+heroku login
+```
+
+10. run the following command in the terminal to create the heroku project
+
+```
+heroku create
+```
+
+11. Access the heroku dashboard with the following url:
+
+https://dashboard.heroku.com/apps
+
+12. Click on the newly created project, select the resources tab, and then under Add-ons, use the search bar to add "Heroku Postgres" with the free plan
+
+13. Click on heroku postgres to view the details, under settings tab, click on View Credentials in the row that is for Database Credentials. Copy the URI (should look something like postgres://[some string of text here])
+
+14. Inside the config/database.rb file, paste the copied URI into the database_url string (line 13)
+
+15. Run the following commands in your terminal
+
+```
+bundle install
+git add .
+git commit -m "updated database config"
+git push origin master
+```
+
+16. Push your app live with the following commands
+
+```
+git push heroku
+heroku run bundle exec rake db:migrate
+```
+
+17. In the dashboard of heroku, you can find the link to your app with the button "Open App" (should be in the top right of the dashboard)
+
+
+# Updating the App
+
+If you've made changes to your code, run the following commands in your terminal
+
+```
+git add .
+git commit -m "made changes to app"
+git push origin master
+git push heroku
+```
+
+If these involve any changes to the database, run the following command
+
+```
+heroku run rake db:migrate
+```
