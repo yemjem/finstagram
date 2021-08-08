@@ -10,7 +10,7 @@ configure do
       database: "db/db.sqlite3"
     }
   else
-    db_url = 'postgres://[your_postgres_url here]'
+    db_url = 'postgres://[postgres://gprnpvxzwdbaow:95154965dd4ced8292210783f18b50e1af59df4751eaa783b7502bcd465f0323@ec2-54-173-138-144.compute-1.amazonaws.com:5432/d1ujh3jl5oegtt]'
     db = URI.parse(ENV['DATABASE_URL'] || db_url)
     set :database, {
       adapter: "postgresql",
@@ -29,4 +29,4 @@ configure do
     autoload ActiveSupport::Inflector.camelize(filename), model_file
   end
 
-end 
+end
