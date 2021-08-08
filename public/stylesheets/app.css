@@ -1,0 +1,41 @@
+#header-background{
+    width:100%;
+    height:50px;      background:url(https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2801&q=80)
+  }
+  
+  
+  body{
+      font-family: 'Bebas Neue', cursive;
+      background-color: whitesmoke;
+  }
+  
+  .content{
+    width: 800px;
+    margin: 0 auto;
+  }
+  
+  
+  main {
+      background-color:white;
+  padding: 16px;
+  }
+  
+   a.photo{
+    transition: padding 0.5s;
+  }
+  
+  a.photo:hover{
+    padding:10px;
+  }
+  
+  img {
+    border-radius:5%;
+    vertical-align:middle;
+  }
+  .user-info img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  

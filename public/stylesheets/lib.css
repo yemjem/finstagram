@@ -5,7 +5,7 @@
 body, input {
   font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
-  color: #244751;
+  color: black;
 }
 
 a {
@@ -71,6 +71,7 @@ main {
 
 .user-info img {
   width: 40px;
+  height: 40px;
 }
 
 .user-info h2 {
